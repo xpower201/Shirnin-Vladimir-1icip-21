@@ -66,6 +66,6 @@ class School(QMainWindow):
         app.exit()
        
 app = QApplication(sys.argv)
-ex = School()
-ex.show()
+exe = School()
+exe.show()
 app.exec()
