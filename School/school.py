@@ -39,8 +39,7 @@ class School(QMainWindow):
         self.lbl_4 = QLabel("Выбрать индекс класса")
         self.btn_add = QPushButton("Добавить")
         self.btn_exit = QPushButton("Выход")
-        self.btn_add_index = QPushButton("Добавить индекс")
-    
+            
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
@@ -52,7 +51,6 @@ class School(QMainWindow):
         layout.addWidget(self.number_class, 1,2)
         layout.addWidget(self.index_class, 2,2)
         layout.addWidget(self.btn_add,3,3)
-        layout.addWidget(self.btn_add_index, 3,2)
         layout.addWidget(self.btn_exit, 3,0)
         
         self.btn_add.clicked.connect(self.btn_add_click)
