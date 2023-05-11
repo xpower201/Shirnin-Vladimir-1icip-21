@@ -1,8 +1,59 @@
 import sys
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
-import time
+from test import Test
 
+class LoginWindow(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Авторизация")
+
+        self.label_login = QLabel("Логин:")
+        self.login_edit = QLineEdit()
+        self.label_password = QLabel("Пароль:")
+        self.password_edit = QLineEdit()
+        self.button_auth = QPushButton("Войти")
+        self.button_exit = QPushButton("Выйти")
+        self.button_auth.clicked.connect(self.auth)
+        self.button_exit.clicked.connect(self.exit)
+        
+
+        self.captcha_dialog = CaptchaDialog(parent=self)
+        self.captcha_dialog.setModal(True)
+
+        self.login_attempts = 0
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.label_login)
+        layout.addWidget(self.login_edit)
+        layout.addWidget(self.label_password)
+        layout.addWidget(self.password_edit)
+        layout.addWidget(self.button_auth)
+        layout.addWidget(self.button_exit)
+
+        self.setLayout(layout)
+
+    def auth(self):
+        username = self.login_edit.text()
+        password = self.password_edit.text()
+
+        if username == "1" and password == "1":
+            self.test = Test()
+            self.test.show()
+        else:
+        
+            self.captcha_dialog.start_timer()
+                
+            if self.captcha_dialog.exec() == QDialog.DialogCode.Accepted:
+                QMessageBox.information(self, "Успех", "Вход выполнен после капчи")
+                
+            else:
+                QMessageBox.warning(self, "Ошибка", "Неверные данные и капча")
+                self.login_attempts = 0
+                
+    def exit(self):
+        app.exit()
+                
 class CaptchaDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -28,14 +79,12 @@ class CaptchaDialog(QDialog):
 
     def verify_captcha(self):
         captcha = self.textbox.text()
-        # Здесь вы можете добавить свою логику проверки капчи
         print("Проверка капчи:", captcha)
-
-
-        if captcha.lower() == "captcha":  # Замените это условие на свою проверку капчи
+        
+        if captcha.lower() == "captcha":  
             self.accept()
         else:
-            self.textbox.setDisabled(True)  # Блокировка поля ввода
+            self.textbox.setDisabled(True)  
             self.timer_counter = 11
             self.timer.start()
             QMessageBox.critical(self, "Ошибка", "Неправильная капча")
@@ -51,51 +100,7 @@ class CaptchaDialog(QDialog):
         if self.timer_counter == 0 :
             self.timer.stop()
             self.textbox.setDisabled(False)
-
-
-
-class LoginWindow(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Окно входа")
-
-        self.label_username = QLabel("Имя пользователя:")
-        self.textbox_username = QLineEdit()
-        self.label_password = QLabel("Пароль:")
-        self.textbox_password = QLineEdit()
-        self.button_login = QPushButton("Войти")
-        self.button_login.clicked.connect(self.login)
-
-        self.captcha_dialog = CaptchaDialog(parent=self)
-        self.captcha_dialog.setModal(True)
-
-        self.login_attempts = 0
-
-        layout = QVBoxLayout()
-        layout.addWidget(self.label_username)
-        layout.addWidget(self.textbox_username)
-        layout.addWidget(self.label_password)
-        layout.addWidget(self.textbox_password)
-        layout.addWidget(self.button_login)
-
-        self.setLayout(layout)
-
-    def login(self):
-        username = self.textbox_username.text()
-        password = self.textbox_password.text()
-
-        if username == "admin" and password == "password":
-            QMessageBox.information(self, "Успех", "Вход выполнен")
-        else:
-        
-            self.captcha_dialog.start_timer()
-                
-            if self.captcha_dialog.exec() == QDialog.DialogCode.Accepted:
-                QMessageBox.information(self, "Успех", "Вход выполнен после капчи")
-                
-            else:
-                QMessageBox.warning(self, "Ошибка", "Неверные данные и капча")
-                self.login_attempts = 0
+            
 app = QApplication(sys.argv)
 exe = LoginWindow()
 exe.show()
