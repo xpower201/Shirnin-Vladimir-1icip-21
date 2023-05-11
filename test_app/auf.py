@@ -3,7 +3,7 @@ from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
 from test import Test
 
-class LoginWindow(QDialog):
+class Auth(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Авторизация")
@@ -40,6 +40,7 @@ class LoginWindow(QDialog):
         if username == "1" and password == "1":
             self.test = Test()
             self.test.show()
+            exe.close()
         else:
         
             self.captcha_dialog.start_timer()
@@ -102,6 +103,6 @@ class CaptchaDialog(QDialog):
             self.textbox.setDisabled(False)
             
 app = QApplication(sys.argv)
-exe = LoginWindow()
+exe = Auth()
 exe.show()
 app.exec()
