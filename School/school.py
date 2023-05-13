@@ -8,7 +8,7 @@ class School(QMainWindow):
         super().__init__()
         
         self.setWindowTitle("Добавление Ученика")
-        self.setFixedSize(500, 200)
+        self.setFixedSize(1200, 500)
     
         self.number_class = QComboBox()
         self.number_class.addItem("1")
@@ -39,6 +39,7 @@ class School(QMainWindow):
         self.lbl_4 = QLabel("Выбрать индекс класса")
         self.btn_add = QPushButton("Добавить")
         self.btn_exit = QPushButton("Выход")
+        self.full_name.setPlaceholderText("Введите ФИО")
             
         widget = QWidget()
         widget.setLayout(layout)
@@ -50,11 +51,14 @@ class School(QMainWindow):
         layout.addWidget(self.full_name, 0,2)
         layout.addWidget(self.number_class, 1,2)
         layout.addWidget(self.index_class, 2,2)
-        layout.addWidget(self.btn_add,3,3)
+        layout.addWidget(self.btn_add,3,2)
         layout.addWidget(self.btn_exit, 3,0)
         
         self.btn_add.clicked.connect(self.btn_add_click)
-        self.btn_exit.clicked.connect(self.btn_exit_click)      
+        self.btn_exit.clicked.connect(self.btn_exit_click)  
+        
+        with open("school/style.css", "r") as css:
+            widget.setStyleSheet(css.read())    
         
     def btn_add_click(self):
         full_name = self.full_name.text()
@@ -64,6 +68,7 @@ class School(QMainWindow):
                 
     def btn_exit_click(self):
         app.exit()
+
        
 app = QApplication(sys.argv)
 exe = School()
