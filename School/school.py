@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QComboBox, QPushButton, QLineEdit, QWidget,QGridLayout
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QComboBox, QPushButton, QLineEdit, QWidget,QGridLayout, QMessageBox
 from engine import add_data
 
 class School(QMainWindow):
@@ -40,7 +40,7 @@ class School(QMainWindow):
         self.btn_add = QPushButton("Добавить")
         self.btn_exit = QPushButton("Выход")
         self.full_name.setPlaceholderText("Введите ФИО")
-            
+        
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
@@ -65,6 +65,7 @@ class School(QMainWindow):
         number_class = self.number_class.currentText()
         index_class = self.index_class.currentText()
         add_data(full_name, number_class, index_class)
+        QMessageBox.information(self, "Успех", "Ученик Добавлен")
                 
     def btn_exit_click(self):
         app.exit()
