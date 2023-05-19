@@ -5,8 +5,8 @@ class TestWindow(QMainWindow):
         super().__init__()
         
         rb1 = QRadioButton(text="lol")
-        rb2 = QRadioButton(text="fuck")
-        rb3 = QRadioButton(text="bitch")
+        rb2 = QRadioButton(text="LOL")
+        rb3 = QRadioButton(text="Leage of Legens")
         vbox = QVBoxLayout()
         widget = QWidget()
         widget.setLayout(vbox)
@@ -16,8 +16,8 @@ class TestWindow(QMainWindow):
 
         
         rb1_1 = QRadioButton(text="amigo")
-        rb2_1 = QRadioButton(text="kurwa")
-        rb3_1 = QRadioButton(text="pierdol")
+        rb2_1 = QRadioButton(text="salut")
+        rb3_1 = QRadioButton(text="si")
         vbox2 = QVBoxLayout()
         widget2 = QWidget()
         widget2.setLayout(vbox2)
@@ -26,9 +26,9 @@ class TestWindow(QMainWindow):
         vbox2.addWidget(rb3_1)
  
         
-        rb1_2 = QRadioButton(text="chupapi")
-        rb2_2 = QRadioButton(text="vitali")
-        rb3_2 = QRadioButton(text="Pudge")
+        rb1_2 = QRadioButton(text="chupa-chups")
+        rb2_2 = QRadioButton(text="Mac Donalds")
+        rb3_2 = QRadioButton(text="Burger King")
         vbox3 = QVBoxLayout()
         widget3 = QWidget()
         widget3.setLayout(vbox3)
