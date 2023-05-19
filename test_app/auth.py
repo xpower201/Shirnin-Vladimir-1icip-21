@@ -8,6 +8,7 @@ from test import TestWindow
 class CaptchaDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
+        
         self.setWindowTitle("Капча")
         self.label = QLabel("Введите капчу:")
         self.textbox = QLineEdit()
@@ -115,8 +116,7 @@ class LoginWindow(QDialog):
                     self.captcha_dialog.start_timer()
                     self.login_attempts = 0
                     self.generate_captcha()
-                
-
+        
 app = QApplication(sys.argv)
 exe = LoginWindow()
 exe.show()
