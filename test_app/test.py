@@ -49,11 +49,14 @@ class TestWindow(QMainWindow):
         
         btnb = QPushButton("back")
         btn = QPushButton("next")
+        btn_itog = QPushButton("result")
         
         btn.clicked.connect(self.activate_tab_1)
         self.stacklayout.addWidget(widget)
         button_layout.addWidget(btn)
         button_layout.addWidget(btnb)
+        button_layout.addWidget(btn_itog)
+        btn_itog.clicked.connect(self.btn_it)
 
 
 
@@ -82,4 +85,7 @@ class TestWindow(QMainWindow):
 
     def activate_tab_2(self):
         self.stacklayout.setCurrentIndex(self.stacklayout.currentIndex()-1)
+        
+    def btn_itog(self):
+        pass
 

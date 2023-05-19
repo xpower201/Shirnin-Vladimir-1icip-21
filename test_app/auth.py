@@ -16,7 +16,7 @@ class CaptchaDialog(QDialog):
         self.generate_captcha()
 
         
-        self.timer_label = QLabel("Таймер: 10")
+        self.timer_label = QLabel("Таймер: 0")
         self.timer_counter = 10
         self.timer = QTimer()
         self.timer.setInterval(1000)
@@ -106,14 +106,13 @@ class LoginWindow(QDialog):
                 self.sw.show()
                 exe.close()
             else:
-        
-                self.captcha_dialog.start_timer()
                 
                 if self.captcha_dialog.exec() == QDialog.DialogCode.Accepted:
                     QMessageBox.information(self, "Успех", "Вход выполнен после капчи")
                 
                 else:
                     QMessageBox.warning(self, "Ошибка", "Неверные данные и капча")
+                    self.captcha_dialog.start_timer()
                     self.login_attempts = 0
                     self.generate_captcha()
                 
