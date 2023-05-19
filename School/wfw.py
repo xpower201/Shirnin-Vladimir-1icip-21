@@ -1,7 +1,7 @@
 import sys
 
 
-from PyQt6.QtWidgets import QApplication, QHBoxLayout, QLabel, QMainWindow, QPushButton, QStackedLayout, QVBoxLayout, QWidget, QRadioButton
+from PyQt6.QtWidgets import QHBoxLayout, QMainWindow, QPushButton, QStackedLayout, QVBoxLayout, QWidget, QRadioButton
 
 
 
@@ -81,17 +81,10 @@ class TestWindow(QMainWindow):
         self.setCentralWidget(widget)
 
     def activate_tab_1(self):
-        self.stacklayout.setCurrentIndex(2)
-        self.stacklayout.setCurrentIndex(0)
-        self.stacklayout.setCurrentIndex(1)
+        self.stacklayout.setCurrentIndex(self.stacklayout.currentIndex()+1)
         
     
 
     def activate_tab_2(self):
-        # 
-        pass
-app = QApplication(sys.argv)
-exe = TestWindow()
-exe.show()
-app.exec()
+        self.stacklayout.setCurrentIndex(self.stacklayout.currentIndex()-1)
 

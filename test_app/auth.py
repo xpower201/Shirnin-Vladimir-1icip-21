@@ -3,7 +3,7 @@ from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QDialog
 import random
 from engine import text, session
-from test import Test
+from test import TestWindow
 
 class CaptchaDialog(QDialog):
     def __init__(self, parent=None):
@@ -93,7 +93,7 @@ class LoginWindow(QDialog):
         self.setLayout(layout)
 
     def login(self):
-        self.sw = Test()
+        self.sw = TestWindow()
 
         sql = text("SELECT * FROM public.auth")
         obj = session.execute(sql)
