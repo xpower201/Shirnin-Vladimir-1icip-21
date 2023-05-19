@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt
 class TestWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setFixedSize(1200, 500)
+        self.setFixedSize(1200, 600)
 
         lbl1 = QLabel("1.Что такое sigmod?")
         self.rb1 = QRadioButton(text="это нейро сеть")
@@ -146,6 +146,7 @@ class TestWindow(QMainWindow):
         self.stacklayout.setCurrentIndex(self.stacklayout.currentIndex()-1)
 
     def result(self):
+
         if self.rb1.isChecked():
             self.v6.setText("1.Верно")
             a = 1
@@ -177,7 +178,7 @@ class TestWindow(QMainWindow):
             self.v5.setText("5.Не верно")
             self.e = d
 
-        self.setFixedSize(400, 200)
+        self.setFixedSize(400, 500)
         self.res.setText(f"Ваш результат:{self.e}")
     def save(self):
         txt = f"Ваш результат:{self.v6.text()} \n"
