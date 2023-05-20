@@ -7,7 +7,7 @@ class School(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.setWindowTitle("Добавление Ученика")
+        self.setWindowTitle("Регистарция")
         self.setFixedSize(1200, 500)
     
         self.number_class = QComboBox()

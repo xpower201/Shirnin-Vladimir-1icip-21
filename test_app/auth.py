@@ -1,9 +1,10 @@
 import sys
 from PyQt6.QtCore import QTimer, Qt
-from PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QDialog
+from PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QDialog, QGridLayout
 import random
 from engine import text, session
 from test import TestWindow
+from reg import Registration
 
 class CaptchaDialog(QDialog):
     def __init__(self, parent=None):
@@ -77,7 +78,11 @@ class LoginWindow(QDialog):
         self.label_password = QLabel("Пароль:")
         self.password_edit = QLineEdit()
         self.button_login = QPushButton("Войти")
+        self.btn_exit = QPushButton("Выход")
+        self.btn_reg = QPushButton("Регистрация")
         self.button_login.clicked.connect(self.login)
+        self.btn_reg.clicked.connect(self.reg)
+        self.btn_exit.clicked.connect(self.exit)
 
         self.captcha_dialog = CaptchaDialog(parent=self)
         self.captcha_dialog.setModal(True)
@@ -90,6 +95,8 @@ class LoginWindow(QDialog):
         layout.addWidget(self.label_password)
         layout.addWidget(self.password_edit)
         layout.addWidget(self.button_login)
+        layout.addWidget(self.btn_reg)
+        layout.addWidget(self.btn_exit)
 
         self.setLayout(layout)
 
@@ -116,6 +123,15 @@ class LoginWindow(QDialog):
                     self.captcha_dialog.start_timer()
                     self.login_attempts = 0
                     self.generate_captcha()
+                    
+    def reg(self):
+        self.sw = Registration()
+        self.sw.show()
+                    
+                    
+                    
+    def exit(slef):
+        exe.close()
         
 app = QApplication(sys.argv)
 exe = LoginWindow()

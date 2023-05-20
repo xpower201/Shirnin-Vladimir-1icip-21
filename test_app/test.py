@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import QLabel,QPushButton, QVBoxLayout, QMainWindow, QRadioButton,QWidget,QHBoxLayout, QStackedLayout
 from PyQt6.QtCore import Qt
+
 class TestWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setFixedSize(1200, 600)
+        self.setFixedSize(600, 600)
 
         lbl1 = QLabel("1.Что такое sigmod?")
         self.rb1 = QRadioButton(text="это нейро сеть")
@@ -188,7 +189,7 @@ class TestWindow(QMainWindow):
         txt4 = f"Ваш результат:{self.v5.text()} \n"
         txt5 = f"Ваш результат:{self.e} \n"
 
-        with open("results.txt", "w", encoding="utf-8") as f:
+        with open("test_app/results.txt", "w", encoding="utf-8") as f:
             f.write(txt)
             f.write(txt1)
             f.write(txt2)
