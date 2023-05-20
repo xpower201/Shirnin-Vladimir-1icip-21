@@ -4,11 +4,11 @@ from PyQt6.QtCore import Qt
 class TestWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setFixedSize(600, 600)
+        self.setFixedSize(1200, 600)
 
-        lbl1 = QLabel("1.Что такое sigmod?")
-        self.rb1 = QRadioButton(text="это нейро сеть")
-        rb2 = QRadioButton(text="это ИИ")
+        lbl1 = QLabel("1.Что такое чубака")
+        self.rb1 = QRadioButton(text="это биг фут")
+        rb2 = QRadioButton(text="это интересное сущёство")
         rb3 = QRadioButton(text="Прикольное слово)")
         vbox = QVBoxLayout()
         widget = QWidget()
@@ -134,9 +134,9 @@ class TestWindow(QMainWindow):
         widget = QWidget()
         widget.setLayout(pagelayout)
         self.setCentralWidget(widget)
-
-        # with open("style.css", "r") as css:
-        #     self.setStyleSheet(css.read())
+        
+        with open("test_app/style.css", "r") as css:
+            widget.setStyleSheet(css.read())  
 
     def activate_tab_v(self):
         self.stacklayout.setCurrentIndex(self.stacklayout.currentIndex()+1)
