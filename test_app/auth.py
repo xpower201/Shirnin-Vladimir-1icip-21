@@ -3,8 +3,8 @@ from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QWidget,QMainWindow
 import random
 from engine import text, session
-from test import TestWindow
 from reg import Registration
+from greeting import Greeting
 
 class CaptchaDialog(QMainWindow):
     def __init__(self):
@@ -74,7 +74,7 @@ class LoginWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Окно входа")
 
-        self.label_username = QLabel("Имя пользователя:")
+        self.label_username = QLabel("Логин:")
         self.login_edit = QLineEdit()
         self.label_password = QLabel("Пароль:")
         self.password_edit = QLineEdit()
@@ -113,13 +113,13 @@ class LoginWindow(QMainWindow):
                 self.login = login
             for password in row:
                 self.password = password
-                if self.login_edit.text() == self.login and self.password_edit.text() == self.password:
-                    self.sw = TestWindow()
-                    self.sw.show()
-                    w.close()
-                else:
-                    self.sw1 = CaptchaDialog()
-                    self.sw1.show()
+            if self.login_edit.text() == self.login and self.password_edit.text() == self.password:
+                self.sw3= Greeting()
+                self.sw3.show()
+                w.close()
+            else:
+                self.sw1 = CaptchaDialog()
+                self.sw1.show()
 
     def reg(self):
         self.sw2 = Registration()
