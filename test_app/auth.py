@@ -19,9 +19,7 @@ class CaptchaDialog(QMainWindow):
         self.textbox = QLineEdit()
         self.button = QPushButton("Проверить")
         self.button.clicked.connect(self.verify_captcha)
-        # self.generate_captcha()
 
-        
         self.timer_label = QLabel("Таймер: 0")
         self.timer_counter = 10
         self.timer = QTimer()
@@ -68,17 +66,8 @@ class CaptchaDialog(QMainWindow):
         if self.timer_counter == 0:
             self.timer.stop()
             self.textbox.setDisabled(False)
-            # self.generate_captcha()
         self.captcha_label = QLabel(self)
         self.captcha_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        
-
-    def generate_captcha(self):
-        captcha1 = str(random.randint(1000, 9999))
-        self.label.setText(captcha1)
-
-
-
 
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -115,7 +104,7 @@ class LoginWindow(QMainWindow):
             widget.setStyleSheet(css.read())  
 
     def login(self):
-        self.sw = TestWindow()
+        # self.sw = TestWindow()
 
         sql = text("SELECT * FROM public.auth")
         obj = session.execute(sql)
@@ -125,11 +114,12 @@ class LoginWindow(QMainWindow):
             for password in row:
                 self.password = password
                 if self.login_edit.text() == self.login and self.password_edit.text() == self.password:
+                    self.sw = TestWindow()
                     self.sw.show()
                     w.close()
-            else:
-                self.sw1 = CaptchaDialog()
-                self.sw1.show()
+                else:
+                    self.sw1 = CaptchaDialog()
+                    self.sw1.show()
 
     def reg(self):
         self.sw2 = Registration()
@@ -143,4 +133,4 @@ class LoginWindow(QMainWindow):
 app = QApplication(sys.argv)
 w = LoginWindow()
 w.show()
-sys.exit(app.exec())
+app.exec()
