@@ -9,7 +9,6 @@ from greeting import Greeting
 class CaptchaDialog(QMainWindow):
     def __init__(self):
         super().__init__()
-        
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         
@@ -50,7 +49,7 @@ class CaptchaDialog(QMainWindow):
             CaptchaDialog.close(self)
             
         else:
-            self.textbox.setDisabled(True)  
+            self.textbox.setDisabled(True)
             self.timer_counter = 11
             self.timer.start()
             QMessageBox.critical(self, "Ошибка", "Неправильная капча")
@@ -73,7 +72,6 @@ class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Окно входа")
-
         self.label_username = QLabel("Логин:")
         self.login_edit = QLineEdit()
         self.label_password = QLabel("Пароль:")
@@ -101,10 +99,9 @@ class LoginWindow(QMainWindow):
         self.setCentralWidget(widget)
         
         with open("test_app/style.css", "r") as css:
-            widget.setStyleSheet(css.read())  
-
-    def login(self):
-        # self.sw = TestWindow()
+            widget.setStyleSheet(css.read())
+    # def login(self):
+    #     # self.sw = TestWindow()
 
         sql = text("SELECT * FROM public.auth")
         obj = session.execute(sql)
@@ -127,7 +124,7 @@ class LoginWindow(QMainWindow):
                     
                     
                     
-    def exit(slef):
+    def exit(self):
         w.close()
         
 app = QApplication(sys.argv)
