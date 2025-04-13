@@ -1,11 +1,9 @@
 import sys
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QWidget,QMainWindow
-import random
 from engine import text, session
 from reg import Registration
 from greeting import Greeting
-
 class CaptchaDialog(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -22,50 +20,36 @@ class CaptchaDialog(QMainWindow):
         self.timer = QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.update_timer)
-
         layout = QVBoxLayout()
         layout.addWidget(self.label)
         layout.addWidget(self.lbl)
         layout.addWidget(self.textbox)
         layout.addWidget(self.timer_label)
         layout.addWidget(self.button)
-
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
-        
         with open("test_app/style.css", "r") as css:
             widget.setStyleSheet(css.read())
-
-    # def verify_captcha(self):
-    #     # captcha = self.textbox.text()
-    #     print("Проверка капчи:")
-
-
         if  self.lbl.text() == self.textbox.text():
             QMessageBox.information(self, "успех","капча пройдена")
             CaptchaDialog.close(self)
-            
         else:
             self.textbox.setDisabled(True)
             self.timer_counter = 11
             self.timer.start()
             QMessageBox.critical(self, "Ошибка", "Неправильная капча")
-
     def start_timer(self):
         self.timer_counter = 10
         self.timer.start()
-
     def update_timer(self):
         self.timer_counter -= 1
         self.timer_label.setText(f"Таймер: {self.timer_counter}")
-
         if self.timer_counter == 0:
             self.timer.stop()
             self.textbox.setDisabled(False)
         self.captcha_label = QLabel(self)
         self.captcha_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
 class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -77,12 +61,9 @@ class LoginWindow(QMainWindow):
         self.button_login = QPushButton("Войти")
         self.btn_exit = QPushButton("Выход")
         self.btn_reg = QPushButton("Регистрация")
-        # self.button_login1.clicked.connect(self.login)
         self.btn_reg.clicked.connect(self.reg)
         self.btn_exit.clicked.connect(self.exit)
-
         self.login_attempts = 0
-
         layout = QVBoxLayout()
         layout.addWidget(self.label_username)
         layout.addWidget(self.login_edit)
@@ -91,16 +72,11 @@ class LoginWindow(QMainWindow):
         layout.addWidget(self.button_login)
         layout.addWidget(self.btn_reg)
         layout.addWidget(self.btn_exit)
-
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
-        
         with open("test_app/style.css", "r") as css:
             widget.setStyleSheet(css.read())
-    # def login(self):
-    #     # self.sw = TestWindow()
-
         sql = text("SELECT * FROM public.auth")
         obj = session.execute(sql)
         for row in obj:
@@ -115,16 +91,11 @@ class LoginWindow(QMainWindow):
             else:
                 self.sw1 = CaptchaDialog()
                 self.sw1.show()
-
     def reg(self):
         self.sw2 = Registration()
-        self.sw2.show()
-                    
-                    
-                    
+        self.sw2.show()         
     def exit(self):
         w.close()
-        
 app = QApplication(sys.argv)
 w = LoginWindow()
 w.show()
