@@ -93,7 +93,7 @@ class LoginWindow(QMainWindow):
                 self.sw1.show()
     def reg(self):
         self.sw2 = Registration()
-        self.sw2.show()         
+        self.sw2.show()
     def exit(self):
         w.close()
 app = QApplication(sys.argv)
