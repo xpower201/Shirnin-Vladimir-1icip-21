@@ -11,14 +11,12 @@ class CaptchaDialog(QMainWindow):
         super().__init__()
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        
         self.setWindowTitle("Капча")
         self.label = QLabel("Введите капчу:")
-        self.lbl  =QLabel(str(random.randint(1000,9999)))
+        self.lbl  =QLabel("Проверка")
         self.textbox = QLineEdit()
         self.button = QPushButton("Проверить")
         self.button.clicked.connect(self.verify_captcha)
-
         self.timer_label = QLabel("Таймер: 0")
         self.timer_counter = 10
         self.timer = QTimer()
@@ -37,11 +35,11 @@ class CaptchaDialog(QMainWindow):
         self.setCentralWidget(widget)
         
         with open("test_app/style.css", "r") as css:
-            widget.setStyleSheet(css.read())    
+            widget.setStyleSheet(css.read())
 
-    def verify_captcha(self):
-        # captcha = self.textbox.text()
-        print("Проверка капчи:")
+    # def verify_captcha(self):
+    #     # captcha = self.textbox.text()
+    #     print("Проверка капчи:")
 
 
         if  self.lbl.text() == self.textbox.text():
@@ -79,7 +77,7 @@ class LoginWindow(QMainWindow):
         self.button_login = QPushButton("Войти")
         self.btn_exit = QPushButton("Выход")
         self.btn_reg = QPushButton("Регистрация")
-        self.button_login.clicked.connect(self.login)
+        # self.button_login1.clicked.connect(self.login)
         self.btn_reg.clicked.connect(self.reg)
         self.btn_exit.clicked.connect(self.exit)
 
