@@ -8,8 +8,7 @@ from greeting import Greeting
 
 class CaptchaDialog(QMainWindow):
     def __init__(self):
-        super().__init__()
-        
+        super().__init__() 
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         
@@ -38,19 +37,18 @@ class CaptchaDialog(QMainWindow):
         self.setCentralWidget(widget)
         
         with open("test_app/style.css", "r") as css:
-            widget.setStyleSheet(css.read())    
+            widget.setStyleSheet(css.read())
 
     def verify_captcha(self):
         # captcha = self.textbox.text()
         print("Проверка капчи:")
-
 
         if  self.lbl.text() == self.textbox.text():
             QMessageBox.information(self, "успех","капча пройдена")
             CaptchaDialog.close(self)
             
         else:
-            self.textbox.setDisabled(True)  
+            self.textbox.setDisabled(True)
             self.timer_counter = 11
             self.timer.start()
             QMessageBox.critical(self, "Ошибка", "Неправильная капча")
@@ -103,8 +101,8 @@ class LoginWindow(QMainWindow):
         with open("test_app/style.css", "r") as css:
             widget.setStyleSheet(css.read())  
 
-    def login(self):
-        # self.sw = TestWindow()
+    # def login(self):
+    #     # self.sw = TestWindow()
 
         sql = text("SELECT * FROM public.auth")
         obj = session.execute(sql)
