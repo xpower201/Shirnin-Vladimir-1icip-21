@@ -1,7 +1,6 @@
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel, QSqlTableModel, QSqlQuery
-from main import Main
+from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QTableView, QVBoxLayout, QWidget, QApplication
+from PyQt5.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -14,7 +13,6 @@ class LoginWindow(QMainWindow):
         db.setPassword('univer')
         db.setUserName('postgres')
         db.open()
-        
         self.label_username = QLabel("Логин:")
         self.login_edit = QLineEdit()
         self.label_password = QLabel("Пароль:")
@@ -56,7 +54,7 @@ class LoginWindow(QMainWindow):
         pass
         
     def exit(self):
-        w.close()
+        LoginWindow.close()
         
 app = QApplication(sys.argv)
 window = LoginWindow()
