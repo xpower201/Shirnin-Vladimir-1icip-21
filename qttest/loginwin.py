@@ -1,5 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QTableView, QVBoxLayout, QWidget, QApplication
+from PyQt5.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QTableView, QVBoxLayout, QWidget
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -47,7 +46,3 @@ class LoginWindow(QMainWindow):
         pass
     def exit(self):
         LoginWindow.close()
-app = QApplication(sys.argv)
-window = LoginWindow()
-window.show()
-app.exec()
