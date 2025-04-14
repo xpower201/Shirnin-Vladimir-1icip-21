@@ -32,7 +32,6 @@ class LoginWindow(QMainWindow):
         layout.addWidget(self.password_edit)
         layout.addWidget(self.button_login)
         layout.addWidget(self.btn_exit)
-        
         self.stm.setTable('lg')
         self.stm.select()
         self.table.setModel(self.stm)
