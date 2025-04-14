@@ -5,7 +5,6 @@ class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Окно входа")
-
         db = QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName('postgres')
         db.setHostName('Localhost')
@@ -23,7 +22,6 @@ class LoginWindow(QMainWindow):
         self.stm = QSqlTableModel(parent=self.table)
         self.button_login.clicked.connect(self.login)
         self.btn_exit.clicked.connect(self.exit)
-
         layout = QVBoxLayout()
         layout.addWidget(self.table)
         layout.addWidget(self.label_username)
@@ -35,7 +33,6 @@ class LoginWindow(QMainWindow):
         self.stm.setTable('lg')
         self.stm.select()
         self.table.setModel(self.stm)
-        
         query = QSqlQuery()
         sql = "SELECT * FROM public.lg"
         query.exec(sql)
@@ -43,18 +40,13 @@ class LoginWindow(QMainWindow):
             print("ok")
         else:
             print("no")
-
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
-        
-        
     def login(self):
         pass
-        
     def exit(self):
         LoginWindow.close()
-        
 app = QApplication(sys.argv)
 window = LoginWindow()
 window.show()
